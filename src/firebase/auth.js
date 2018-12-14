@@ -1,5 +1,4 @@
-import {auth, auth_object} from './firebase.js'
-
+import {auth, auth_object} from './firebase.js';
 
 
 export const signUp_Email = (email, passwd) =>

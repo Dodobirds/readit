@@ -15,4 +15,7 @@ if (!firebase.apps.length) {
 
 const auth = firebase.auth();
 const auth_object = firebase.auth;
-export {auth, auth_object};
+
+const database = firebase.database();
+const database_object = firebase.database;
+export {auth, auth_object, database, database_object};

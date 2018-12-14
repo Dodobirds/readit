@@ -30,7 +30,7 @@ class SignInForm extends Component {
     auth.signIn_Email(this.state.email, this.state.password)
       .then(() => {
         this.setState({FORM_SCHEMA});
-        this.props.history.push(routes.HOME);
+        this.props.history.push(routes.ACCOUNT);
       })
       .catch(error => {
         this.setState({error_msg: error});
@@ -42,7 +42,7 @@ class SignInForm extends Component {
     auth.signIn_Github()
       .then(() => {
         this.setState({FORM_SCHEMA});
-        this.props.history.push(routes.HOME)
+        this.props.history.push(routes.ACCOUNT)
       })
     event.preventDefault();
   }
@@ -51,7 +51,7 @@ class SignInForm extends Component {
     auth.signIn_Google()
       .then(() => {
         this.setState({FORM_SCHEMA});
-        this.props.history.push(routes.HOME)
+        this.props.history.push(routes.ACCOUNT)
       })
     event.preventDefault();
   }

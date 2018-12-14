@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter, Route} from 'react-router-dom';
-import {firebase} from "../firebase";
-
+import {firebase, database} from "../firebase";
 
 import * as routes from "../const/routes.js"
 import Navigation from "./Navigation.js"
@@ -15,7 +14,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      postList: []
     };
   }
 
@@ -26,6 +26,12 @@ class App extends Component {
       } else {
         this.setState({user: null});
       }
+    });
+
+    database.postRef.orderByChild('votes').on('child_added', (snapshot) => {
+      this.setState({
+        postList: [snapshot.val()].concat(this.state.postList)
+      });
     });
   }
 
@@ -50,7 +56,7 @@ class App extends Component {
               />
               <Route
                 exact path={routes.HOME}
-        component={HomePage}
+                render={(props) => <HomePage user={this.state.user} list={this.state.postList}/>}
               />
             </div>
       </BrowserRouter>
